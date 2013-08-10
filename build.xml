@@ -1,0 +1,48 @@
+<?xml version="1.0"?> 
+<project name="Hello World Project" default="jar"> 
+<property name="build" location="build" />
+<property name="build1" location="build/test" />
+<property name="javaloc" location="com/org/test" />
+<target name="info"> 
+<echo>Hello World - Welcome to Apache Ant!</echo>
+<echo>${ant.file}    </echo>
+<echo>${ant.version}    </echo>
+<echo>${basedir}    </echo>
+<echo>${ant.java.version}    </echo>
+<echo>${ant.projet.name}    </echo>
+<echo>${ant.project.default-target}    </echo>
+<echo>${ant.project.invoked-targets}    </echo>
+<echo>${ant.core.lib}    </echo>
+<echo>${ant.home}    </echo>
+<echo>${ant.library.dir}    </echo>
+<echo>${src}    </echo>
+</target>
+
+<target name="test" depends="clean,init,compile">
+
+</target> 
+<target name="clean">
+<delete dir="${build}" />
+</target>
+
+<target name="init">
+<tstamp/>
+<mkdir dir="${build}" />
+</target>
+
+<target name="compile" description="compliling java code">
+<javac srcdir="${javaloc}" destdir="${build}"  />
+</target>
+
+<target name="jar" >
+<jar destfile="project.jar" basedir="${build}"  />
+</target>
+
+<target name="documentation" >
+<javadoc destdir="." sourcepath="com"  />
+</target>
+
+<target name="exe" >
+<java classname="com.org.test.HelloWorld.java" classpath="build/com/org/test" />
+</target>
+</project>
